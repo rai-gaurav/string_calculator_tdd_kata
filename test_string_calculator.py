@@ -21,7 +21,7 @@ def test_add_two_number():
 
 def test_add_multiple_numbers():
     """Function should handles multiple integer"""
-    assert add("1,2,3,6,8,13") == 33
+    assert add("0,1,2,3,6,8,13") == 33
 
 
 def test_add_leading_trailing_spaces():
@@ -54,10 +54,23 @@ def test_add_empty_number_between_commas():
     assert add("2,,5") == 7
 
 
+def test_add_custom_delimiter():
+    """Function should handles custom delimiter instead of comma"""
+    assert add("//;\n1;2") == 3
+    assert add("//&\n3&4&5") == 12
+    assert add("//@\n4@7\n@6@21") == 38
+
+
 def test_add_invalid_input():
-    """Function should handles invalid input"""
+    """Function should raise value error on invalid input"""
     with pytest.raises(ValueError):
         add("3,x")
+
+
+def test_add_special_characters():
+    """Function should raise value error  special character"""
+    with pytest.raises(ValueError):
+        add("5,9,$")
 
 
 if __name__ == "__main__":
