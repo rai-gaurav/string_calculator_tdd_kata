@@ -1,5 +1,7 @@
 """ Module performing the string calculations """
 
+import re
+
 
 def add(numbers):
     """Function adding string of numbers"""
@@ -8,10 +10,14 @@ def add(numbers):
 
     delimiter = ","  # default value
     if numbers.startswith("//"):
-        # split inot two part on first \n encounter
+        # split into two part on first \n encounter
         delimiter_section, number_section = numbers.split("\n", 1)
-        # Remove the first two char from the slice (//) and delimiter will be sfter that
-        delimiter = delimiter_section[2:]
+        matching = re.match(r"//\[(.+)\]", delimiter_section)
+        if matching:
+            delimiter = matching.group(1)
+        else:
+            # Remove the first two char from the slice (//) and delimiter will be after that
+            delimiter = delimiter_section[2:]
         # After delimiter, second slice will contain actual numbers
         numbers = number_section
 
@@ -44,4 +50,5 @@ def add(numbers):
 #     print(add("1\n2,3"))
 #     print(add("//;\n6;2"))
 #     print(add("2,1001"))
+#     print(add("//[***]\n1***2***3"))
 #     print(add("2, -6, -3"))
