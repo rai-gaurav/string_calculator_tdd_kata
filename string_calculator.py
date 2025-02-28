@@ -19,7 +19,16 @@ def add(numbers):
     numbers = numbers.replace("\n", delimiter)
     # In case we have consecutive multiple delimiter without a number in between
     number_list = [num for num in numbers.split(delimiter) if num.strip()]
-    number_list = map(int, number_list)
+    # map returns an iterator, need to convert it to list
+    number_list = list(map(int, number_list))
+
+    negative_numbers = [num for num in number_list if num < 0]
+    if negative_numbers:
+        raise ValueError(
+            "negative numbers not allowed {}".format(
+                ",".join(map(str, negative_numbers))
+            )
+        )
     return sum(number_list)
 
 
@@ -29,3 +38,4 @@ if __name__ == "__main__":
     print(add("1,5"))
     print(add("1\n2,3"))
     print(add("//;\n6;2"))
+    print(add("2, -6, -3"))

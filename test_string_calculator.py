@@ -58,7 +58,29 @@ def test_add_custom_delimiter():
     """Function should handles custom delimiter instead of comma"""
     assert add("//;\n1;2") == 3
     assert add("//&\n3&4&5") == 12
+
+
+def test_add_custom_delimiter_with_newlines():
+    """Function should handles custom delimiter with newlines"""
     assert add("//@\n4@7\n@6@21") == 38
+
+
+def test_add_negative_numbers():
+    """Function should raise exception in case of negative number"""
+    with pytest.raises(ValueError, match="negative numbers not allowed -4"):
+        add("13,-4,8")
+
+
+def test_add_multiple_negative_numbers():
+    """Function should raise exception and exception message, separated by commas in case of multiple negative numbers"""
+    with pytest.raises(ValueError, match="negative numbers not allowed -3,-34"):
+        add("12,-3,-34,67")
+
+
+def test_add_custom_delimiter_with_negative_numbers():
+    """Function should handles custom delimiter with negative numbers"""
+    with pytest.raises(ValueError, match="negative numbers not allowed -6,-7"):
+        add("//@\n-6@3@-7")
 
 
 def test_add_invalid_input():
