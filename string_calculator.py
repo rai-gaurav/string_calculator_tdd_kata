@@ -22,6 +22,7 @@ def add(numbers):
     # map returns an iterator, need to convert it to list
     number_list = list(map(int, number_list))
 
+    # Check for negative number
     negative_numbers = [num for num in number_list if num < 0]
     if negative_numbers:
         raise ValueError(
@@ -29,6 +30,10 @@ def add(numbers):
                 ",".join(map(str, negative_numbers))
             )
         )
+
+    # Ignore numbers larger than 1000
+    number_list = [num for num in number_list if num <= 1000]
+
     return sum(number_list)
 
 
@@ -38,4 +43,5 @@ def add(numbers):
 #     print(add("1,5"))
 #     print(add("1\n2,3"))
 #     print(add("//;\n6;2"))
+#     print(add("2,1001"))
 #     print(add("2, -6, -3"))

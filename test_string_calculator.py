@@ -31,7 +31,9 @@ def test_add_leading_trailing_spaces():
 
 def test_add_large_numbers():
     """Function should handles large numbers"""
-    assert add("2030080,5104073") == 7134153
+    assert add("2030080,5104073") == 0
+    assert add("2,1001") == 2
+    assert add("1000,1001") == 1000
 
 
 def test_add_newline_characters():
