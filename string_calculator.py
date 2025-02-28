@@ -32,10 +32,10 @@ def add(numbers):
     return sum(number_list)
 
 
-if __name__ == "__main__":
-    print(add(""))
-    print(add("1"))
-    print(add("1,5"))
-    print(add("1\n2,3"))
-    print(add("//;\n6;2"))
-    print(add("2, -6, -3"))
+# if __name__ == "__main__":
+#     print(add(""))
+#     print(add("1"))
+#     print(add("1,5"))
+#     print(add("1\n2,3"))
+#     print(add("//;\n6;2"))
+#     print(add("2, -6, -3"))
