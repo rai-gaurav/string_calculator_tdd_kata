@@ -34,6 +34,26 @@ def test_add_large_numbers():
     assert add("2030080,5104073") == 7134153
 
 
+def test_add_newline_characters():
+    """Function should handles newline delimiter instead of comma"""
+    assert add("1\n2,3") == 6
+
+
+def test_add_newline_only():
+    """Function should handles only newline delimiter instead of comma"""
+    assert add("3\n4\n7") == 14
+
+
+def test_add_mixed_delimiters():
+    """Function should handles mix of multiple newline delimiter and comma"""
+    assert add("2\n5,\n6\n8,11") == 32
+
+
+def test_add_empty_number_between_commas():
+    """Function should handles consecutive commas without number in between"""
+    assert add("2,,5") == 7
+
+
 def test_add_invalid_input():
     """Function should handles invalid input"""
     with pytest.raises(ValueError):
