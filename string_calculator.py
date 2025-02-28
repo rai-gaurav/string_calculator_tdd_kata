@@ -13,6 +13,7 @@ def add(numbers):
     if numbers.startswith("//"):
         # split into two part on first \n encounter
         delimiter_section, number_section = numbers.split("\n", 1)
+        # Non-greddy match. Captures the shortest possible match between the brackets
         matching = re.findall(r"\[(.*?)\]", delimiter_section)
 
         if matching:

@@ -33,12 +33,14 @@ test_string_calculator.py .................                                     
 pytest --cov=string_calculator --cov-report term-missing
 ```
 ```
+test_string_calculator.py .....................                                                                                                                            [100%]
+
 ---------- coverage: platform win32, python 3.11.9-final-0 -----------
 Name                   Stmts   Miss  Cover   Missing
 ----------------------------------------------------
-string_calculator.py      15      0   100%
+string_calculator.py      23      0   100%
 ----------------------------------------------------
-TOTAL                     15      0   100%
+TOTAL                     23      0   100%
 ```
 
 In case you want to get HTML report -
