@@ -92,9 +92,19 @@ def test_add_invalid_input():
 
 
 def test_add_special_characters():
-    """Function should raise value error  special character"""
+    """Function should raise value error special character"""
     with pytest.raises(ValueError):
         add("5,9,$")
+
+
+def test_add_custom_delimiter_any_length():
+    """Function should be able to handles custom delimiter of any length"""
+    assert add("//[***]\n1***2***3") == 6
+    assert add("//[$$]\n3$$6$$8") == 17
+    assert add("//[^Z]\n32^Z643^Z845") == 1520  # Control Character
+    assert (
+        add("//[éï«ù╬Ä]\n2éï«ù╬Ä\n453éï«ù╬Ä62") == 517
+    )  # French language characters as delimiter
 
 
 if __name__ == "__main__":
