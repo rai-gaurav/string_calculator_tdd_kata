@@ -107,5 +107,12 @@ def test_add_custom_delimiter_any_length():
     )  # French language characters as delimiter
 
 
+def test_add_multiple_custom_delimiters():
+    """Function should be able to handles multiple custom delimiter of any length"""
+    assert add("//[*][%]\n1*2%3") == 6
+    assert add("//[$$$][&&&&]\n3$$$5&&&&8") == 16
+    assert add("//[!!][<><>]\n11!!22<><>33") == 66
+
+
 if __name__ == "__main__":
     pytest.main()
