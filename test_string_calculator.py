@@ -92,7 +92,7 @@ def test_add_invalid_input():
 
 
 def test_add_special_characters():
-    """Function should raise value error special character"""
+    """Function should raise value error on special character"""
     with pytest.raises(ValueError):
         add("5,9,$")
 
@@ -112,6 +112,17 @@ def test_add_multiple_custom_delimiters():
     assert add("//[*][%]\n1*2%3") == 6
     assert add("//[$$$][&&&&]\n3$$$5&&&&8") == 16
     assert add("//[!!][<><>]\n11!!22<><>33") == 66
+
+
+def test_add_multiple_custom_delimiters_with_newlines():
+    """Function should handles multiple custom delimiter with newlines"""
+    assert add("//[▬§←][☼‼]\n23▬§←\n38\n☼‼59") == 120
+
+
+def test_add_multiple_custom_delimiters_with_negative_number():
+    """Function should through exception when handling multiple custom delimiter with negative number"""
+    with pytest.raises(ValueError, match="negative numbers not allowed -5,-73"):
+        add("//[!!][???]\n0!!-5???37???-73")
 
 
 if __name__ == "__main__":
